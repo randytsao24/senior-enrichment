@@ -1,7 +1,7 @@
 // server/db/models/student.js
 
 const Sequelize = require('sequelize');
-const db = require('../db');
+const db = require('../../db');
 
 var Student = db.define('student', {
 	firstName: {

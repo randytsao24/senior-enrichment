@@ -1,7 +1,7 @@
 // server/db/models/campus.js
 
 const Sequelize = require('sequelize');
-const db = require('../db');
+const db = require('../../db');
 
 var Campus = db.define('campus', {
 	name: {
@@ -10,15 +10,11 @@ var Campus = db.define('campus', {
 	},
 	imageUrl: {
 		type: Sequelize.STRING,
-		defaultValue: 
+		defaultValue: 'lol'
 	},
 	description: {
-		type: Sequelize.TEXT,
-		validate: {
-			min: 0.0,
-			max: 4.0
-		}
+		type: Sequelize.TEXT
 	}
 });
 
-module.exports = Student;
+module.exports = Campus;
