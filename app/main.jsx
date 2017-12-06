@@ -5,19 +5,14 @@ import { Provider } from 'react-redux'
 
 import store from './store'
 import Root from './components/Root'
-import Campuses from './components/Campuses';
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Main from './components/Main';
 
 render (
   <Provider store={store}>
-    <div>
-    	<MuiThemeProvider>
-	    	<AppBar />
-	    </MuiThemeProvider>
-	    <Campuses />
-    </div>
+  	<Router>
+    	<Main />
+    </Router>
   </Provider>,
   document.getElementById('main')
 )
