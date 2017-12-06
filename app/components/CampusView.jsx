@@ -7,7 +7,6 @@ import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 function CampusView(props) {
-	console.log("CampusView props:", props);
 
 	const campusId = Number(props.match.params.campusId);
 	const campusStudents = props.students.filter((student) => {
@@ -16,10 +15,6 @@ function CampusView(props) {
 	const selectedCampus = props.campuses.find((campus) => {
 		return campus.id === campusId;
 	});
-
-	console.log('campusId:', campusId);
-	console.log('selectedCampus:', selectedCampus);
-	console.log('campusStudents:', campusStudents);
 
 	return ( 
 		<div>

@@ -16,6 +16,7 @@ import {
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+// Helper function for our Students component
 function getCampusById(campusList, id) {
 	return campusList.find((campus) => {
 		return campus.id === id;
