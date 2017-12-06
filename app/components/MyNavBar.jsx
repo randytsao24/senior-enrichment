@@ -3,29 +3,39 @@
 'use strict';
 
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const styles = {
-	margin: 12
+	appBar: {
+		backgroundColor: 'black'
+	},
+	button: {
+		margin: 12
+	}
 };
 
 export default function MyNavBar (props) {
 	return (
-		<MuiThemeProvider>
-			<AppBar 
-				title='Fullstack Galactic Academy Manager'
-				iconElementRight={
-					<div>
-						<RaisedButton label="Campuses" style={styles} disabled={true}>
+		<AppBar 
+			title='Fullstack Galactic Academy Manager'
+			style={styles.appBar}
+			iconElementLeft={<img width={45} height={45} 
+			src='https://pbs.twimg.com/profile_images/694191024416112642/VtJUhbKk.png'/>}
+			iconElementRight={
+				<div>
+					<NavLink to='/campuses'>
+						<RaisedButton id='campusesButton' label="Campuses" style={styles.button}>
 						</RaisedButton>
-						<RaisedButton label="Students" style={styles}>
+					</NavLink>
+					<NavLink to='/students'>
+						<RaisedButton id='studentsButton' label="Students" style={styles.button}>
 						</RaisedButton>
-					</div>
-				}
-			/>
-		</MuiThemeProvider>
+					</NavLink>
+				</div>
+			}
+		/>
 	)
 }
