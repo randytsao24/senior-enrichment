@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 
 import campuses from './campuses';
 import students from './students';
+import newStudentEntry from './newStudentEntry';
 
 const initialState = {
 	campuses: []
@@ -17,7 +18,8 @@ const initialState = {
 // Combining reducers here!
 const rootReducer = combineReducers({
 	campuses,
-	students
+	students,
+	newStudentEntry
 });
 
 export default rootReducer;
