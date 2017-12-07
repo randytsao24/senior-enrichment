@@ -14,13 +14,6 @@ export function updateStudentNameInputAction(studentName) {
 	};
 }
 
-export function writeNewStudentAction(student) {
-	return {
-		type: UPDATE_STUDENT_NAME_INPUT,
-		newStudent: student
-	};
-}
-
 // Reducer
 export default function reducer(state = '', action) {
 	switch (action.type) {

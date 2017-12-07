@@ -1,4 +1,4 @@
-// components/AddNewStudent.jsx
+// components/AddNewCampus.jsx
 
 import React, { Component } from 'react';
 import store from '../store';
@@ -13,7 +13,7 @@ import { updateStudentCampusSelectionAction } from '../reducers/newStudentCampus
 import { createStudent } from '../reducers/students';
 
 
-export default class AddNewStudent extends Component {
+export default class AddNewCampus extends Component {
 
 	constructor(props) {
 		super(props);
@@ -21,7 +21,6 @@ export default class AddNewStudent extends Component {
 
 		// Bind change listeners
 		this.handleChange = this.handleChange.bind(this);
-		this.handleSelectChange = this.handleSelectChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
@@ -34,35 +33,12 @@ export default class AddNewStudent extends Component {
   }
 
   handleChange(event) {
-  	// Update newStudentEntry to user's current input
-		store.dispatch(updateStudentNameInputAction(event.target.value));
-  }
-
-  handleSelectChange(event, index, item) {
-  	// Update newCampusSelection to user's selection
-		store.dispatch(updateStudentCampusSelectionAction(item));
+  	console.log("Campus input field changed");
   }
 
   handleSubmit(event) {
   	event.preventDefault();
 
-		// Get selected campus from select component
-		const campusSelection = Number(this.state.newStudentCampusSelection);
-
-		// Obtain name that user entered
-		const studentName = event.target.studentNameField.value.split(' ');
-
-		// Create student object and store it onto our students table
-		store.dispatch(createStudent({
-			firstName: studentName[0],
-			lastName: studentName[1],
-			email: event.target.studentEmailField.value,
-			gpa: 3.0,
-			campusId: campusSelection
-		}));
-
-		// Reinitialize student name input field
-		store.dispatch(updateStudentNameInputAction(''));
   }
 
 	render() {
