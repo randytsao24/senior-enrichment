@@ -14,7 +14,6 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // Helper function for our Students component
 function getCampusById(campusList, id) {
@@ -36,15 +35,17 @@ function Students(props) {
 				</RaisedButton>
 			</NavLink>
 
-			<Table>
-				<TableHeader>
+			<Table selectable={false}>
+				<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
 		      <TableRow>
 		        <TableHeaderColumn>#</TableHeaderColumn>
 		        <TableHeaderColumn>Name</TableHeaderColumn>
 		        <TableHeaderColumn>Campus</TableHeaderColumn>
+		        <TableHeaderColumn>Student ID</TableHeaderColumn>
+		        <TableHeaderColumn></TableHeaderColumn>
 		      </TableRow>
 		    </TableHeader>
-		    <TableBody>
+		    <TableBody displayRowCheckbox={false}>
 		    {
 		    	students && students.map((student, index) => {
 		    		let studentCampus = getCampusById(campuses, student.campusId);
@@ -61,6 +62,14 @@ function Students(props) {
 				        	<NavLink to={`/campuses/${studentCampus.id}`}>
 				        		{studentCampus.name}
 				        	</NavLink>
+				        </TableRowColumn>
+				        <TableRowColumn>
+				        	<NavLink to={`/students/${student.id}`}>
+				        		{student.id}
+				        	</NavLink>
+				        </TableRowColumn>
+				        <TableRowColumn>
+				        	<RaisedButton label='X'></RaisedButton>
 				        </TableRowColumn>
 				      </TableRow>
 		    		);

@@ -12,7 +12,9 @@ import StudentView from './StudentView';
 import MyNavBar from './MyNavBar';
 import { getCampusList } from '../reducers/campuses';
 import { getStudentList } from '../reducers/students';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import store from '../store';
 
 export default class Main extends Component {

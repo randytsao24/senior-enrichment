@@ -6,6 +6,17 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
+import RaisedButton from 'material-ui/RaisedButton';
+import Divider from 'material-ui/Divider';
+
 function CampusView(props) {
 
 	const campusId = Number(props.match.params.campusId);
@@ -23,21 +34,32 @@ function CampusView(props) {
 				Description: {selectedCampus && selectedCampus.description}
 			</div>
 			<h3>Students</h3>
-			<ul>
-			{
-				campusStudents && campusStudents.map((student, index) => {
-					return (
-						<div key={student.id}>
-							{index + 1} - {' '}    
-							<NavLink to={`/students/${student.id}`}>
-								{student.firstName} {student.lastName}
-							</NavLink>
-							<br/><br/>
-						</div>
-					)
-				})
-			}
-			</ul>
+			<Table selectable={false}>
+				<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+		      <TableRow>
+		        <TableHeaderColumn>#</TableHeaderColumn>
+		        <TableHeaderColumn>Name</TableHeaderColumn>
+		        <TableHeaderColumn>Student ID</TableHeaderColumn>
+		      </TableRow>
+		    </TableHeader>
+		    <TableBody displayRowCheckbox={false}>
+		    {
+		    	campusStudents && campusStudents.map((student, index) => {
+		    		return (
+		    			<TableRow key={student.id}>
+		    				<TableRowColumn>{index + 1}</TableRowColumn>
+		    				<TableRowColumn>
+		    					<NavLink to={`/students/${student.id}`}>
+		    						{student.name}
+		    					</NavLink>
+		    				</TableRowColumn>
+		    				<TableRowColumn>{student.id}</TableRowColumn>
+		    			</TableRow>
+		    		);
+		    	})
+		    }
+		    </TableBody>
+			</Table>
 		</div>
 	);
 }

@@ -7,14 +7,14 @@ import { NavLink } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import { blue500 } from 'material-ui/styles/colors';
+import { black500, blue500 } from 'material-ui/styles/colors';
 
 import { updateCampusNameInputAction } from '../reducers/newCampusEntry';
 import { createNewCampus } from '../reducers/campuses';
 
 const styles = {
 	textFieldColor: {
-		color: blue500
+		color: black500
 	}
 };
 
