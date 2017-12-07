@@ -7,11 +7,17 @@ import { NavLink } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import { blue500 } from 'material-ui/styles/colors';
 
 import { updateStudentNameInputAction } from '../reducers/newStudentEntry';
 import { updateStudentCampusSelectionAction } from '../reducers/newStudentCampusSelection';
 import { createStudent } from '../reducers/students';
 
+const styles = {
+	textFieldColor: {
+		color: blue500
+	}
+};
 
 export default class AddNewStudent extends Component {
 
@@ -76,16 +82,20 @@ export default class AddNewStudent extends Component {
 					<div className="form-group">
 						<TextField
 							name="studentNameField"
-							hintText="Enter student's name"
 	      			floatingLabelText="Student Name"
+	      			errorText="Please enter student's full name"
+	      			floatingLabelStyle={styles.textFieldColor}
+	      			errorStyle={styles.textFieldColor}
 	      			onChange={this.handleChange}
 						/>
 						<br/>
 
 						<TextField
 							name="studentEmailField"
-							hintText="Enter student's email"
 	      			floatingLabelText="Student Email"
+	      			errorText="Please enter student's valid email"
+	      			floatingLabelStyle={styles.textFieldColor}
+	      			errorStyle={styles.textFieldColor}
 						/>
 						<br/>
 

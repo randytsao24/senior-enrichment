@@ -4,7 +4,6 @@ import axios from 'axios';
 
 // Action types
 const UPDATE_STUDENT_NAME_INPUT = 'UPDATE_STUDENT_NAME_INPUT';
-const WRITE_NEW_STUDENT = 'WRITE_NEW_STUDENT';
 
 // Action creators
 export function updateStudentNameInputAction(studentName) {

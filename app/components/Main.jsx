@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import AddNewStudent from './AddNewStudent';
+import AddNewCampus from './AddNewCampus';
 import Campuses from './Campuses';
 import CampusView from './CampusView';
 import Students from './Students';
@@ -38,6 +39,7 @@ export default class Main extends Component {
 							<Route path='/campuses/:campusId' component={CampusView} />
 							<Route path='/students/:studentId' component={StudentView} />
 							<Route exact path='/add-new-student' component={AddNewStudent} />
+							<Route exact path='/add-new-campus' component={AddNewCampus} />
 							<Route exact path='/campuses' component={Campuses} />
 							<Route exact path='/students' component={Students} />
 							<Redirect to='/campuses' />

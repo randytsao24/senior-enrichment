@@ -4,13 +4,20 @@ import axios from 'axios';
 
 // Action types
 const GET_CAMPUSES = 'GET_CAMPUSES';
-const GET_SELECTED_CAMPUS = 'GET_SELECTED_CAMPUS';
+const CREATE_NEW_CAMPUS = 'CREATE_NEW_CAMPUS';
 
 // Action creators
 export function getCampusesAction(campusList) {
 	return {
 		type: GET_CAMPUSES,
 		campuses: campusList
+	};
+}
+
+export function createNewCampusAction(campus) {
+	return {
+		type: CREATE_NEW_CAMPUS,
+		newCampus: campus
 	};
 }
 
@@ -27,12 +34,27 @@ export function getCampusList() {
 	}
 }
 
+export function createNewCampus(campus, history) {
+	return function thunk(dispatch) {
+		return axios.post('/api/campuses', campus)
+			.then(res => res.data)
+			.then(createdCampus => {
+				const action = createNewCampusAction(createdCampus);
+				dispatch(action);
+				history.push(`/campuses/${createdCampus.id}`);
+			})
+			.catch(console.error);
+	}
+}
+
 // Reducer
 export default function reducer(state = [], action) {
 	switch (action.type) {
 		case GET_CAMPUSES:
-			return action.campuses
+			return action.campuses;
+		case CREATE_NEW_CAMPUS:
+			return [...state, action.newCampus];
 		default:
-			return state
+			return state;
 	}
 }

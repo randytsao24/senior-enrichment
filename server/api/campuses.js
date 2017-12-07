@@ -11,4 +11,10 @@ router.get('/', (req, res, next) => {
 		.catch(next);
 });
 
+router.post('/', (req, res, next) => {
+	Campus.create(req.body)
+		.then(createdCampus => res.json(createdCampus))
+		.catch(next);
+});
+
 module.exports = router;
