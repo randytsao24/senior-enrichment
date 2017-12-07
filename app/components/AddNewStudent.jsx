@@ -65,7 +65,7 @@ export default class AddNewStudent extends Component {
 			email: event.target.studentEmailField.value,
 			gpa: 3.0,
 			campusId: campusSelection
-		}));
+		}, this.props.history));
 
 		// Reinitialize student name input field
 		store.dispatch(updateStudentNameInputAction(''));

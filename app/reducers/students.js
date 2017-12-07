@@ -41,6 +41,7 @@ export function createStudent(student, history) {
 			.then(createdStudent => {
 				const action = createStudentAction(createdStudent);
 				dispatch(action);
+				history.push(`/students/`);
 			})
 			.catch(console.error);
 	}
