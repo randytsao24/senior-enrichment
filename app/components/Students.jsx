@@ -22,72 +22,78 @@ function getCampusById(campusList, id) {
 	});
 }
 
-function Students(props) {
-	const campuses = props.campuses;
-	const students = props.students;
+export default class Students extends Component {
 
-	return ( 
-		<div>
-			<h2>Fullstack Student List</h2>
+	constructor(props) {
+		super(props);
 
-			<NavLink to='/add-new-student'>
-				<RaisedButton label='Add Student'>
-				</RaisedButton>
-			</NavLink>
+		this.state = store.getState();
+	}
 
-			<Table selectable={false}>
-				<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-		      <TableRow>
-		        <TableHeaderColumn>#</TableHeaderColumn>
-		        <TableHeaderColumn>Name</TableHeaderColumn>
-		        <TableHeaderColumn>Campus</TableHeaderColumn>
-		        <TableHeaderColumn>Student ID</TableHeaderColumn>
-		        <TableHeaderColumn></TableHeaderColumn>
-		      </TableRow>
-		    </TableHeader>
-		    <TableBody displayRowCheckbox={false}>
-		    {
-		    	students && students.map((student, index) => {
-		    		let studentCampus = getCampusById(campuses, student.campusId);
+	componentDidMount() {
+    this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
+  }
 
-		    		return (
-		    			<TableRow key={student.id}>
-				        <TableRowColumn>{index + 1}</TableRowColumn>
-				        <TableRowColumn>
-				        	<NavLink to={`/students/${student.id}`}>
-				        		{student.name}
-				        	</NavLink>
-				        </TableRowColumn>
-				        <TableRowColumn>
-				        	<NavLink to={`/campuses/${studentCampus.id}`}>
-				        		{studentCampus.name}
-				        	</NavLink>
-				        </TableRowColumn>
-				        <TableRowColumn>
-				        	<NavLink to={`/students/${student.id}`}>
-				        		{student.id}
-				        	</NavLink>
-				        </TableRowColumn>
-				        <TableRowColumn>
-				        	<RaisedButton label='X'></RaisedButton>
-				        </TableRowColumn>
-				      </TableRow>
-		    		);
-		    	})
-		    }
-		    </TableBody>
-			</Table>
-		</div>
-	);
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+	render() {
+		const campuses = this.state.campuses;
+		const students = this.state.students;
+
+		return ( 
+			<div>
+				<h2>Student List</h2>
+
+				<NavLink to='/add-new-student'>
+					<RaisedButton label='Add Student'>
+					</RaisedButton>
+				</NavLink>
+
+				<Table selectable={false}>
+					<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+			      <TableRow>
+			        <TableHeaderColumn>#</TableHeaderColumn>
+			        <TableHeaderColumn>Name</TableHeaderColumn>
+			        <TableHeaderColumn>Campus</TableHeaderColumn>
+			        <TableHeaderColumn>Student ID</TableHeaderColumn>
+			        <TableHeaderColumn></TableHeaderColumn>
+			      </TableRow>
+			    </TableHeader>
+			    <TableBody displayRowCheckbox={false}>
+			    {
+			    	students && students.map((student, index) => {
+			    		let studentCampus = getCampusById(campuses, student.campusId);
+
+			    		return (
+			    			<TableRow key={student.id}>
+					        <TableRowColumn>{index + 1}</TableRowColumn>
+					        <TableRowColumn>
+					        	<NavLink to={`/students/${student.id}`}>
+					        		{student.name}
+					        	</NavLink>
+					        </TableRowColumn>
+					        <TableRowColumn>
+					        	<NavLink to={`/campuses/${studentCampus.id}`}>
+					        		{studentCampus.name}
+					        	</NavLink>
+					        </TableRowColumn>
+					        <TableRowColumn>
+					        	<NavLink to={`/students/${student.id}`}>
+					        		{student.id}
+					        	</NavLink>
+					        </TableRowColumn>
+					        <TableRowColumn>
+					        	<RaisedButton label='X'></RaisedButton>
+					        </TableRowColumn>
+					      </TableRow>
+			    		);
+			    	})
+			    }
+			    </TableBody>
+				</Table>
+			</div>
+		);
+	}
 }
-
-const mapStateToProps = (state) => {
-	return {
-		campuses: state.campuses,
-		students: state.students
-	};
-};
-
-const StudentListContainer = connect(mapStateToProps)(Students);
-
-export default StudentListContainer;

@@ -34,7 +34,8 @@ const styles = {
   },
   button: {
     justifyContent: 'center',
-    textAlign: 'center'
+    textAlign: 'center',
+    margin: 20
   }
 }
 
@@ -42,7 +43,7 @@ function Campus (props) {
   return (
     <div>
       <div style={styles.header}>
-        <h2>Fullstack Campus List</h2>
+        <h2>Campus List</h2>
         <NavLink to='/add-new-campus'>
           <RaisedButton style={styles.button} label='Add Campus'>
           </RaisedButton>

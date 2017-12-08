@@ -41,7 +41,7 @@ export function createNewCampus(campus, history) {
 			.then(createdCampus => {
 				const action = createNewCampusAction(createdCampus);
 				dispatch(action);
-				history.push(`/campuses/${createdCampus.id}`);
+				history.push(`/campuses/`)
 			})
 			.catch(console.error);
 	}

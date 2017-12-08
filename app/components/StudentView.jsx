@@ -26,9 +26,12 @@ const style = {
 
 function StudentView(props) {
 	const studentId = Number(props.match.params.studentId);
-	const student = props.students.find((student) => {
+	const student = props.students.length > 0 ?
+	 props.students.find((student) => {
 		return student.id === studentId;
-	});
+	}) 
+	 :
+	null;
 
 	const studentCampus = student ? 
 		getCampusById(props.campuses, student.campusId) : null;
@@ -37,6 +40,7 @@ function StudentView(props) {
 		<div>
 			<h2>Student Information for {student && student.name}</h2>
 			<Table selectable={false}>
+
 				<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
 		      <TableRow>
 		      	<TableHeaderColumn>Student ID</TableHeaderColumn>
@@ -47,6 +51,7 @@ function StudentView(props) {
 		        <TableHeaderColumn>Campus</TableHeaderColumn>
 		      </TableRow>
 		    </TableHeader>
+
 		    <TableBody displayRowCheckbox={false}>
 		    	<TableRow>
 		    		<TableRowColumn>{student && student.id}</TableRowColumn>
@@ -54,29 +59,47 @@ function StudentView(props) {
 			    	<TableRowColumn>{student && student.lastName}</TableRowColumn>
 			    	<TableRowColumn>{student && student.email}</TableRowColumn>
 			    	<TableRowColumn>{student && student.gpa}</TableRowColumn>
-			    	<TableRowColumn>{student &&studentCampus.name}</TableRowColumn>
+			    	<TableRowColumn>{studentCampus && studentCampus.name}</TableRowColumn>
 		    	</TableRow>
+
 		    	<TableRow>
 		    		<TableRowColumn>
-		    			<UpdateFieldDialog selection={updateIds.ID}/>
+		    			{/* Empty column for ID! */}
 		    		</TableRowColumn>
 			    	<TableRowColumn>
-			    		<UpdateFieldDialog selection={updateIds.FIRST_NAME}/>
+			    		<UpdateFieldDialog 
+			    			field={student && student.firstName} 
+			    			studentId={student && student.id}
+			    			selection={updateIds.FIRST_NAME} />
 			    	</TableRowColumn>
 			    	<TableRowColumn>
-			    		<UpdateFieldDialog selection={updateIds.LAST_NAME}/>
+			    		<UpdateFieldDialog
+			    			studentId={student && student.id} 
+			    			lastName={student && student.lastName} 
+			    			students={student && props.students}
+			    			selection={updateIds.LAST_NAME} />
 			    	</TableRowColumn>
 			    	<TableRowColumn>
-			    		<UpdateFieldDialog selection={updateIds.EMAIL}/>
+			    		<UpdateFieldDialog 
+			    			studentId={student && student.id}
+			    			selection={updateIds.EMAIL}/>
 			    	</TableRowColumn>
 			    	<TableRowColumn>
-			    		<UpdateFieldDialog selection={updateIds.GPA}/>
+			    		<UpdateFieldDialog 
+			    			studentId={student && student.id}
+			    			selection={updateIds.GPA}/>
 			    	</TableRowColumn>
 			    	<TableRowColumn>
-			    		<UpdateFieldDialog selection={updateIds.CAMPUS}/>
+			    		<UpdateFieldDialog 
+			    			studentId={student && student.id}
+			    			campusId={student && student.campusId}
+			    			campuses={props.campuses}
+			    			selection={updateIds.CAMPUS}/>
 			    	</TableRowColumn>
 		    	</TableRow>
+
 		    </TableBody>
+
 			</Table>
 		</div>
 	);

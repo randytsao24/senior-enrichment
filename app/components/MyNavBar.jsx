@@ -20,7 +20,7 @@ const styles = {
 export default function MyNavBar (props) {
 	return (
 		<AppBar 
-			title='Fullstack Galactic Academy Manager'
+			title='Margaret Hamilton Interplanetary Academy Management System'
 			style={styles.appBar}
 			iconElementLeft={<img width={45} height={45} 
 			src='https://pbs.twimg.com/profile_images/694191024416112642/VtJUhbKk.png'/>}
