@@ -6,11 +6,7 @@ import axios from 'axios';
 const GET_STUDENTS = 'GET_STUDENTS';
 const CREATE_NEW_STUDENT = 'CREATE_NEW_STUDENT';
 const UPDATE_STUDENTS = 'UPDATE_STUDENTS';
-const UPDATE_STUDENT_FIRST_NAME = 'UPDATE_STUDENT_FIRST_NAME';
-const UPDATE_STUDENT_LAST_NAME = 'UPDATE_STUDENT_LAST_NAME';
-const UPDATE_STUDENT_EMAIL = 'UPDATE_STUDENT_NAME';
-const UPDATE_STUDENT_GPA = 'UPDATE_STUDENT_NAME';
-const UPDATE_STUDENT_CAMPUS = 'UPDATE_STUDENT_CAMPUS';
+const DELETE_STUDENT = 'DELETE_STUDENT';
 
 // Action creators
 export function getStudentsAction(studentList) {
@@ -73,6 +69,26 @@ export function updateStudent(id, type, newEntry) {
 			.then((updatedStudents) => {
 				const action = updateStudentsAction(updatedStudents);
 				dispatch(action);
+			})
+			.catch(console.error);
+	}
+}
+
+export function deleteStudent(studentId, history) {
+	return function thunk(dispatch) {
+		// Initialize new object to what we want to update
+		let studentUpdateObj = {
+			studentId: studentId
+		};
+
+		axios.delete(`/api/students/${studentId}`, studentUpdateObj)
+			.then(res => res.data)
+			.then((updatedStudents) => {
+				const action = updateStudentsAction(updatedStudents);
+				dispatch(action);
+				
+				if (history)
+					history.push('/students');
 			})
 			.catch(console.error);
 	}

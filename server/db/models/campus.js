@@ -10,7 +10,7 @@ var Campus = db.define('campus', {
 	},
 	imageUrl: {
 		type: Sequelize.STRING,
-		defaultValue: 'lol'
+		defaultValue: 'https://i.imgur.com/5jbNbQw.png'
 	},
 	description: {
 		type: Sequelize.TEXT

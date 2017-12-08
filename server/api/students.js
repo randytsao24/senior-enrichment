@@ -103,4 +103,17 @@ router.put('/:studentId', (req, res, next) => {
 	}
 });
 
+router.delete('/:studentId', (req, res, next) => {
+	const studentId = Number(req.params.studentId);
+
+	Student.destroy({
+		where: {
+			id: studentId
+		}
+	})
+		.then(result => Student.findAll())
+		.then(students => res.json(students))
+		.catch(next);
+});
+
 module.exports = router;

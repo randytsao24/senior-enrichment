@@ -60,7 +60,7 @@ export default class AddNewCampus extends Component {
 
   	// Obtain data from the fields
   	const campusName = this.state.newCampusEntry;
-  	const campusImage = event.target.campusImageField.value;
+  	const campusImage = event.target.campusImageField.value || 'https://i.imgur.com/5jbNbQw.png';
   	const campusDescription = event.target.campusDescription.value;
 
   	// Create new campus with obtained data

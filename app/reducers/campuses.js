@@ -6,6 +6,7 @@ import axios from 'axios';
 const GET_CAMPUSES = 'GET_CAMPUSES';
 const CREATE_NEW_CAMPUS = 'CREATE_NEW_CAMPUS';
 const UPDATE_CAMPUSES = 'UPDATE_CAMPUSES';
+const DELETE_CAMPUS = 'DELETE_CAMPUS';
 
 // Action creators
 export function getCampusesAction(campusList) {
@@ -22,9 +23,16 @@ export function createNewCampusAction(campus) {
 	};
 }
 
-export function updateStudentsAction(campuses) {
+export function updateCampusesAction(campuses) {
 	return {
 		type: UPDATE_CAMPUSES,
+		updatedCampuses: campuses
+	};
+}
+
+export function deleteCampusAction(campuses) {
+	return {
+		type: DELETE_CAMPUS,
 		updatedCampuses: campuses
 	};
 }
@@ -66,8 +74,26 @@ export function updateCampus(id, type, newEntry) {
 		axios.put(`/api/campuses/${id}`, campusUpdateObj)
 			.then(res => res.data)
 			.then((updatedCampuses) => {
-				const action = updateStudentsAction(updatedCampuses);
+				const action = updateCampusesAction(updatedCampuses);
 				dispatch(action);
+			})
+			.catch(console.error);
+	}
+}
+
+export function deleteCampus(campusId, history) {
+	return function thunk(dispatch) {
+		// Initialize new object to what we want to update
+		let campusUpdateObj = {
+			campusId: campusId
+		}
+
+		axios.delete(`/api/campuses/${campusId}`, campusUpdateObj)
+			.then(res => res.data)
+			.then((updatedCampuses) => {
+				const action = updateCampusesAction(updatedCampuses);
+				dispatch(action);
+				history.push('/campuses');
 			})
 			.catch(console.error);
 	}

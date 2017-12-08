@@ -27,6 +27,8 @@ import Divider from 'material-ui/Divider';
 
 import UpdateFieldDialog from './UpdateFieldDialog';
 import { updateIds, styles } from '../utils';
+import { deleteCampus } from '../reducers/campuses';
+import { deleteStudent } from '../reducers/students';
 
 function CampusView(props) {
 
@@ -61,6 +63,12 @@ function CampusView(props) {
 		    			campusId={selectedCampus && selectedCampus.id}
 			    		selection={updateIds.CAMPUS_IMAGE}
 		    			buttonLabel='Edit Campus Image'/>
+		    		<RaisedButton 
+		    			label="Delete Campus"
+		    			disabled={
+		    				campusStudents.length > 0 ? true : false
+		    			}
+		    			onClick={props.handleDeleteButtonClick}/>
 		      </div>
 		    </CardActions>
 		    <Table selectable={false}>
@@ -93,7 +101,15 @@ function CampusView(props) {
 		    						{student.id}
 		    					</NavLink>
 		    				</TableRowColumn>
-		    				<TableRowColumn>X</TableRowColumn>
+		    				<TableRowColumn>
+		    					<RaisedButton 
+				        		label='X' 
+				        		onClick={function() {
+				        			console.log(student.id);
+				        			store.dispatch(deleteStudent(student.id));
+				        		}}>
+			        		</RaisedButton>
+		    				</TableRowColumn>
 		    			</TableRow>
 		    		);
 		    	})
@@ -112,6 +128,14 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const CampusViewContainer = connect(mapStateToProps)(CampusView);
+const mapDispatchToProps = (dispatch, ownProps) => {
+	return {
+		handleDeleteButtonClick: (event) => {
+			dispatch(deleteCampus(Number(ownProps.match.params.campusId), ownProps.history));
+		}
+	};
+};
+
+const CampusViewContainer = connect(mapStateToProps, mapDispatchToProps)(CampusView);
 
 export default CampusViewContainer;

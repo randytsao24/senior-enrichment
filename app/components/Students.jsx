@@ -15,6 +15,8 @@ import {
 } from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import { deleteStudent } from '../reducers/students';
+
 // Helper function for our Students component
 function getCampusById(campusList, id) {
 	return campusList.find((campus) => {
@@ -28,6 +30,8 @@ export default class Students extends Component {
 		super(props);
 
 		this.state = store.getState();
+
+		this.handleDeleteButtonClick = this.handleDeleteButtonClick.bind(this);
 	}
 
 	componentDidMount() {
@@ -36,6 +40,10 @@ export default class Students extends Component {
 
   componentWillUnmount() {
     this.unsubscribe();
+  }
+
+  handleDeleteButtonClick(event) {
+  	console.log('yooo');
   }
 
 	render() {
@@ -85,7 +93,13 @@ export default class Students extends Component {
 					        	</NavLink>
 					        </TableRowColumn>
 					        <TableRowColumn>
-					        	<RaisedButton label='X'></RaisedButton>
+					        	<RaisedButton 
+					        		label='X' 
+					        		onClick={function() {
+					        			console.log(student.id);
+					        			store.dispatch(deleteStudent(student.id));
+					        		}}>
+					        		</RaisedButton>
 					        </TableRowColumn>
 					      </TableRow>
 			    		);

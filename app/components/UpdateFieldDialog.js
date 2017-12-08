@@ -40,12 +40,17 @@ export default class UpdateFieldDialog extends Component {
 
 		// Bind open/close handlers
 		this.handleOpen = this.handleOpen.bind(this);
+    this.handleCancelClose = this.handleCancelClose.bind(this);
 		this.handleClose = this.handleClose.bind(this);
 		this.onUpdate = this.onUpdate.bind(this);
 	}
 
   handleOpen() {
     this.setState({open: true});
+  }
+
+  handleCancelClose() {
+    this.setState({open: false});
   }
 
   handleClose() {
@@ -68,7 +73,6 @@ export default class UpdateFieldDialog extends Component {
   }
 
   onUpdate(event) {
-  	console.log("value:", event.target.value);
   	this.setState({updateEntry: event.target.value});
   }
 
@@ -77,7 +81,14 @@ export default class UpdateFieldDialog extends Component {
 
 		const actions = [
       <RaisedButton
+        label="Cancel"
+        style={styles.button}
+        primary={true}
+        onClick={this.handleCancelClose}
+      />,
+      <RaisedButton
         label="Update"
+        style={styles.button}
         primary={true}
         onClick={this.handleClose}
       />
