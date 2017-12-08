@@ -22,8 +22,12 @@ export default function MyNavBar (props) {
 		<AppBar 
 			title='Margaret Hamilton Interplanetary Academy Management System'
 			style={styles.appBar}
-			iconElementLeft={<img width={45} height={45} 
-			src='https://pbs.twimg.com/profile_images/694191024416112642/VtJUhbKk.png'/>}
+			iconElementLeft={
+				<NavLink to='/campuses'>
+					<img width={45} height={45} 
+					src='https://pbs.twimg.com/profile_images/694191024416112642/VtJUhbKk.png'/>
+				</NavLink>
+			}
 			iconElementRight={
 				<div>
 					<NavLink to='/campuses'>

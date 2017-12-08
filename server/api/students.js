@@ -61,7 +61,7 @@ router.put('/:studentId', (req, res, next) => {
 			};
 			break;
 		default:
-			console.log("wtf?");
+			console.log("Couldn't parse entry type");
 	}
 
 	console.log('updateObj', updateObj);

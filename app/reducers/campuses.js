@@ -5,6 +5,7 @@ import axios from 'axios';
 // Action types
 const GET_CAMPUSES = 'GET_CAMPUSES';
 const CREATE_NEW_CAMPUS = 'CREATE_NEW_CAMPUS';
+const UPDATE_CAMPUSES = 'UPDATE_CAMPUSES';
 
 // Action creators
 export function getCampusesAction(campusList) {
@@ -18,6 +19,13 @@ export function createNewCampusAction(campus) {
 	return {
 		type: CREATE_NEW_CAMPUS,
 		newCampus: campus
+	};
+}
+
+export function updateStudentsAction(campuses) {
+	return {
+		type: UPDATE_CAMPUSES,
+		updatedCampuses: campuses
 	};
 }
 
@@ -47,6 +55,24 @@ export function createNewCampus(campus, history) {
 	}
 }
 
+export function updateCampus(id, type, newEntry) {
+	return function thunk(dispatch) {
+		// Initialize new object to what we want to update
+		let campusUpdateObj = {
+			type: Number(type),
+			entry: newEntry
+		};
+
+		axios.put(`/api/campuses/${id}`, campusUpdateObj)
+			.then(res => res.data)
+			.then((updatedCampuses) => {
+				const action = updateStudentsAction(updatedCampuses);
+				dispatch(action);
+			})
+			.catch(console.error);
+	}
+}
+
 // Reducer
 export default function reducer(state = [], action) {
 	switch (action.type) {
@@ -54,6 +80,8 @@ export default function reducer(state = [], action) {
 			return action.campuses;
 		case CREATE_NEW_CAMPUS:
 			return [...state, action.newCampus];
+		case UPDATE_CAMPUSES:
+			return action.updatedCampuses;
 		default:
 			return state;
 	}

@@ -14,8 +14,19 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import {
+	Card, 
+	CardActions, 
+	CardHeader, 
+	CardMedia, 
+	CardTitle, 
+	CardText
+} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import Divider from 'material-ui/Divider';
+
+import UpdateFieldDialog from './UpdateFieldDialog';
+import { updateIds, styles } from '../utils';
 
 function CampusView(props) {
 
@@ -29,17 +40,41 @@ function CampusView(props) {
 
 	return ( 
 		<div>
-			<h2>{selectedCampus && selectedCampus.name}</h2>
-			<div>
-				Description: {selectedCampus && selectedCampus.description}
-			</div>
-			<h3>Students</h3>
-			<Table selectable={false}>
+			<Card>
+				<CardHeader
+		      title={selectedCampus && selectedCampus.name}
+		      subtitle="Campus Information"
+		      avatar={selectedCampus && selectedCampus.imageUrl}
+		    />
+		    <CardText>{selectedCampus && selectedCampus.description}</CardText>
+		    <CardActions>
+		    	<div style={styles.buttonDiv}>
+		    		<UpdateFieldDialog 
+		    			campusId={selectedCampus && selectedCampus.id}
+			    		selection={updateIds.CAMPUS_NAME}
+		    			buttonLabel='Edit Campus Name'/>
+		    		<UpdateFieldDialog 
+		    			campusId={selectedCampus && selectedCampus.id}
+			    		selection={updateIds.CAMPUS_DESCRIPTION}
+		    			buttonLabel='Edit Campus Description'/>
+		    		<UpdateFieldDialog 
+		    			campusId={selectedCampus && selectedCampus.id}
+			    		selection={updateIds.CAMPUS_IMAGE}
+		    			buttonLabel='Edit Campus Image'/>
+		      </div>
+		    </CardActions>
+		    <Table selectable={false}>
 				<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+					<TableRow>
+              <TableHeaderColumn colSpan="4" tooltip="Student List" style={{textAlign: 'center'}}>
+                Student List for {selectedCampus && selectedCampus.name}
+              </TableHeaderColumn>
+            </TableRow>
 		      <TableRow>
 		        <TableHeaderColumn>#</TableHeaderColumn>
 		        <TableHeaderColumn>Name</TableHeaderColumn>
 		        <TableHeaderColumn>Student ID</TableHeaderColumn>
+		        <TableHeaderColumn>Options</TableHeaderColumn>
 		      </TableRow>
 		    </TableHeader>
 		    <TableBody displayRowCheckbox={false}>
@@ -53,13 +88,19 @@ function CampusView(props) {
 		    						{student.name}
 		    					</NavLink>
 		    				</TableRowColumn>
-		    				<TableRowColumn>{student.id}</TableRowColumn>
+		    				<TableRowColumn>
+		    					<NavLink to={`/students/${student.id}`}>
+		    						{student.id}
+		    					</NavLink>
+		    				</TableRowColumn>
+		    				<TableRowColumn>X</TableRowColumn>
 		    			</TableRow>
 		    		);
 		    	})
 		    }
 		    </TableBody>
 			</Table>
+			</Card>
 		</div>
 	);
 }

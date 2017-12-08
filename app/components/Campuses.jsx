@@ -33,9 +33,7 @@ const styles = {
     justifyContent: 'space-between'
   },
   button: {
-    justifyContent: 'center',
-    textAlign: 'center',
-    margin: 20
+    margin: 16
   }
 }
 

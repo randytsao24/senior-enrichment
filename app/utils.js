@@ -17,18 +17,26 @@ export const updateIds = {
 	LAST_NAME: 2,
 	EMAIL: 3,
 	GPA: 4,
-	CAMPUS: 5
+	CAMPUS: 5,
+	CAMPUS_NAME: 6,
+	CAMPUS_DESCRIPTION: 7,
+	CAMPUS_IMAGE: 8
 };
 
 // Dummy componentsfor rendering specified field updating in the UpdateFieldDialog component
 
-const styles = {
+export const styles = {
 	textFieldColor: {
 		color: black500
 	},
 	button: {
-		marginBottom: 16
-	}
+		margin: 16
+	},
+	buttonDiv: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }
 };
 
 export function DialogUpdateFirstName(props) {
@@ -116,6 +124,54 @@ export function DialogUpdateCampus(props) {
 				})
 			}
 			</RadioButtonGroup>
+			<br/>
+		</div>
+	);
+}
+
+export function DialogUpdateCampusName(props) {
+	return (
+		<div>
+			<TextField
+				name="campusNameField"
+  			floatingLabelText="Updated Campus Name"
+  			errorText="Please enter a new campus name"
+  			floatingLabelStyle={styles.textFieldColor}
+  			errorStyle={styles.textFieldColor}
+  			onChange={props.update}
+			/>
+			<br/>
+		</div>
+	);
+}
+
+export function DialogUpdateCampusDescription(props) {
+	return (
+		<div>
+			<TextField
+				name="campusDescriptionField"
+  			floatingLabelText="Updated Campus Description"
+  			errorText="Please enter a new campus description"
+  			floatingLabelStyle={styles.textFieldColor}
+  			errorStyle={styles.textFieldColor}
+  			onChange={props.update}
+			/>
+			<br/>
+		</div>
+	);
+}
+
+export function DialogUpdateCampusImage(props) {
+	return (
+		<div>
+			<TextField
+				name="campusImageField"
+  			floatingLabelText="Updated Campus Image"
+  			errorText="Please enter a new campus image URL"
+  			floatingLabelStyle={styles.textFieldColor}
+  			errorStyle={styles.textFieldColor}
+  			onChange={props.update}
+			/>
 			<br/>
 		</div>
 	);

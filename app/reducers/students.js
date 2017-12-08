@@ -27,7 +27,7 @@ export function createStudentAction(student) {
 	};
 }
 
-export function updateStudents(students) {
+export function updateStudentsAction(students) {
 	return {
 		type: UPDATE_STUDENTS,
 		updatedStudents: students
@@ -71,7 +71,7 @@ export function updateStudent(id, type, newEntry) {
 		axios.put(`/api/students/${id}`, studentUpdateObj)
 			.then(res => res.data)
 			.then((updatedStudents) => {
-				const action = updateStudents(updatedStudents);
+				const action = updateStudentsAction(updatedStudents);
 				dispatch(action);
 			})
 			.catch(console.error);

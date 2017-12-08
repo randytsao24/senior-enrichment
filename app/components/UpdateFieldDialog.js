@@ -17,19 +17,14 @@ import {
 	DialogUpdateLastName,
 	DialogUpdateEmail,
 	DialogUpdateGpa,
-	DialogUpdateCampus
+	DialogUpdateCampus,
+  DialogUpdateCampusName,
+  DialogUpdateCampusDescription,
+  DialogUpdateCampusImage,
+	styles
 } from '../utils';
 import { updateStudent } from '../reducers/students';
-
-const styles = {
-	textFieldColor: {
-		color: black500
-	}
-};
-
-const DialogFieldUpdaters = [
-	DialogUpdateFirstName
-];
+import { updateCampus } from '../reducers/campuses';
 
 export default class UpdateFieldDialog extends Component {
 
@@ -38,6 +33,7 @@ export default class UpdateFieldDialog extends Component {
 
 		this.state = {
 			open: false,
+      sourceId: this.props.studentId || this.props.campusId,
 			selectionId: Number(this.props.selection),
 			updateEntry: ''
 		};
@@ -54,11 +50,21 @@ export default class UpdateFieldDialog extends Component {
 
   handleClose() {
     this.setState({open: false});
-    store.dispatch(updateStudent(
-    	Number(this.props.studentId),
-    	this.state.selectionId,
-    	this.state.updateEntry
-    ));
+
+    // Check if we're updating a student or a campus
+    if (this.props.studentId) {
+      store.dispatch(updateStudent(
+      	Number(this.props.studentId),
+      	this.state.selectionId,
+      	this.state.updateEntry
+      ));
+    } else {
+      store.dispatch(updateCampus(
+        Number(this.props.campusId),
+        this.state.selectionId,
+        this.state.updateEntry
+      ));
+    }
   }
 
   onUpdate(event) {
@@ -79,18 +85,21 @@ export default class UpdateFieldDialog extends Component {
 
     const fieldSelections = [
     	'id',
-    	'first name',
-    	'last name',
-    	'email',
-    	'GPA',
-    	'campus'
+    	'student\'s first name',
+    	'student\'s last name',
+    	'student\'s email',
+    	'student\'s GPA',
+    	'student\'s campus',
+    	'campus name',
+    	'campus description',
+    	'campus image URL'
     ];
 
 		return (
 			<div>
-				<RaisedButton label="Update" onClick={this.handleOpen} />
+				<RaisedButton label={this.props.buttonLabel || 'Update'} onClick={this.handleOpen} />
         <Dialog
-          title={`Updating student's ${fieldSelections[this.props.selection]}...`}
+          title={`Updating ${fieldSelections[this.props.selection]}...`}
           actions={actions}
           modal={false}
           open={this.state.open}
@@ -101,6 +110,9 @@ export default class UpdateFieldDialog extends Component {
 	        {this.props.selection === 3 ? <DialogUpdateEmail update={this.onUpdate} /> : null}
 	        {this.props.selection === 4 ? <DialogUpdateGpa update={this.onUpdate} /> : null}
 	        {this.props.selection === 5 ? <DialogUpdateCampus campuses={this.props.campuses} selectedCampus={this.props.campusId} update={this.onUpdate} /> : null}
+          {this.props.selection === 6 ? <DialogUpdateCampusName update={this.onUpdate} /> : null}
+          {this.props.selection === 7 ? <DialogUpdateCampusDescription update={this.onUpdate} /> : null}
+          {this.props.selection === 8 ? <DialogUpdateCampusImage update={this.onUpdate} /> : null}
         </Dialog>
 			</div>
 		);
