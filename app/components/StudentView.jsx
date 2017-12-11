@@ -18,7 +18,8 @@ import Dialog from 'material-ui/Dialog';
 import Divider from 'material-ui/Divider';
 import UpdateFieldDialog from './UpdateFieldDialog';
 
-import { getCampusById, updateIds } from '../utils';
+import { getCampusById, updateIds, styles } from '../utils';
+import { deleteStudent } from '../reducers/students';
 
 const style = {
   textAlign: 'center'
@@ -38,7 +39,18 @@ function StudentView(props) {
 
 	return ( 
 		<div>
-			<h2>Student Information for {student && student.name}</h2>
+			<div style={styles.header}>
+				<h2>Student Information for {student && student.name}</h2>
+				<RaisedButton 
+      		label='Delete Student' 
+      		style={styles.button}
+      		backgroundColor={styles.deleteButton.backgroundColor}
+      		onClick={function() {
+      			console.log(student.id);
+      			store.dispatch(deleteStudent(student.id, props.history));
+      		}}>
+      	</RaisedButton>	
+			</div>
 			<Table selectable={false}>
 
 				<TableHeader displaySelectAll={false} adjustForCheckbox={false}>

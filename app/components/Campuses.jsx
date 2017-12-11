@@ -14,28 +14,29 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import store from '../store';
+import { styles } from '../utils';
 
-const styles = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-  },
-  gridList: {
-    width: 1200,
-    height: 600,
-    overflowY: 'auto',
-  },
-  header: {
-    display: 'flex',
-    flexDirection: 'row',
-    textAlign: 'center',
-    justifyContent: 'space-between'
-  },
-  button: {
-    margin: 16
-  }
-}
+// const styles = {
+//   root: {
+//     display: 'flex',
+//     flexWrap: 'wrap',
+//     justifyContent: 'space-around',
+//   },
+//   gridList: {
+//     width: 1200,
+//     height: 600,
+//     overflowY: 'auto',
+//   },
+//   header: {
+//     display: 'flex',
+//     flexDirection: 'row',
+//     textAlign: 'center',
+//     justifyContent: 'space-between'
+//   },
+//   button: {
+//     margin: 16
+//   }
+// }
 
 function Campus (props) {
   return (
@@ -43,7 +44,10 @@ function Campus (props) {
       <div style={styles.header}>
         <h2>Campus List</h2>
         <NavLink to='/add-new-campus'>
-          <RaisedButton style={styles.button} label='Add Campus'>
+          <RaisedButton 
+            style={styles.button} 
+            label='Add Campus'
+            backgroundColor={styles.addButton.backgroundColor}>
           </RaisedButton>
         </NavLink>
       </div>

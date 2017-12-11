@@ -103,9 +103,9 @@ function CampusView(props) {
 		    				</TableRowColumn>
 		    				<TableRowColumn>
 		    					<RaisedButton 
-				        		label='X' 
+				        		label='DELETE'
+				        		backgroundColor={styles.deleteButton.backgroundColor} 
 				        		onClick={function() {
-				        			console.log(student.id);
 				        			store.dispatch(deleteStudent(student.id));
 				        		}}>
 			        		</RaisedButton>

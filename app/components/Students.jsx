@@ -16,6 +16,7 @@ import {
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { deleteStudent } from '../reducers/students';
+import { styles } from '../utils';
 
 // Helper function for our Students component
 function getCampusById(campusList, id) {
@@ -52,12 +53,17 @@ export default class Students extends Component {
 
 		return ( 
 			<div>
-				<h2>Student List</h2>
+				<div style={styles.header}>
+					<h2>Student List</h2>
 
-				<NavLink to='/add-new-student'>
-					<RaisedButton label='Add Student'>
-					</RaisedButton>
-				</NavLink>
+					<NavLink to='/add-new-student'>
+						<RaisedButton 
+							backgroundColor={styles.addButton.backgroundColor} 
+							style={styles.button}
+							label='Add Student'>
+						</RaisedButton>
+					</NavLink>
+				</div>
 
 				<Table selectable={false}>
 					<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
@@ -94,12 +100,13 @@ export default class Students extends Component {
 					        </TableRowColumn>
 					        <TableRowColumn>
 					        	<RaisedButton 
-					        		label='X' 
+					        		label='Delete' 
+					        		backgroundColor={styles.deleteButton.backgroundColor}
 					        		onClick={function() {
 					        			console.log(student.id);
 					        			store.dispatch(deleteStudent(student.id));
 					        		}}>
-					        		</RaisedButton>
+					        	</RaisedButton>
 					        </TableRowColumn>
 					      </TableRow>
 			    		);

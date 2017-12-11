@@ -26,6 +26,22 @@ export const updateIds = {
 // Dummy componentsfor rendering specified field updating in the UpdateFieldDialog component
 
 export const styles = {
+	root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  gridList: {
+    width: 1200,
+    height: 600,
+    overflowY: 'auto',
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    textAlign: 'center',
+    justifyContent: 'space-between'
+  },
 	textFieldColor: {
 		color: black500
 	},
@@ -36,6 +52,12 @@ export const styles = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  deleteButton: {
+  	backgroundColor: '#FF9999'
+  },
+  addButton: {
+  	backgroundColor: '#33FF99'
   }
 };
 
