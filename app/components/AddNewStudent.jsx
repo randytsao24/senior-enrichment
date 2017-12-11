@@ -7,17 +7,13 @@ import { NavLink } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 import { black500 } from 'material-ui/styles/colors';
 
 import { updateStudentNameInputAction } from '../reducers/newStudentEntry';
 import { updateStudentCampusSelectionAction } from '../reducers/newStudentCampusSelection';
 import { createStudent } from '../reducers/students';
-
-const styles = {
-	textFieldColor: {
-		color: black500
-	}
-};
+import { styles } from '../utils';
 
 export default class AddNewStudent extends Component {
 
@@ -124,7 +120,12 @@ export default class AddNewStudent extends Component {
 					</div>
 
 					<div className="form-group">
-		        <button type="submit" className="btn btn-default">Add Student</button>
+						<RaisedButton 
+							type='submit'
+							backgroundColor={styles.addButton.backgroundColor} 
+							style={styles.button}
+							label='Add Student'>
+						</RaisedButton>
 		      </div>
 				</form>
 			</div>

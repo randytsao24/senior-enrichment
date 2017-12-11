@@ -7,16 +7,12 @@ import { NavLink } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 import { black500, blue500 } from 'material-ui/styles/colors';
 
 import { updateCampusNameInputAction } from '../reducers/newCampusEntry';
 import { createNewCampus } from '../reducers/campuses';
-
-const styles = {
-	textFieldColor: {
-		color: black500
-	}
-};
+import { styles } from '../utils';
 
 function checkCampusName(campuses, name) {
 	return campuses.find((campus) => {
@@ -115,7 +111,12 @@ export default class AddNewCampus extends Component {
 					</div>
 
 					<div className="form-group">
-		        <button type="submit" className="btn btn-default">Add Campus</button>
+						<RaisedButton 
+							type='submit'
+							backgroundColor={styles.addButton.backgroundColor} 
+							style={styles.button}
+							label='Add Campus'>
+						</RaisedButton>
 		      </div>
 				</form>
 			</div>

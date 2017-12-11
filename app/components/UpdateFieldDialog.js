@@ -83,12 +83,14 @@ export default class UpdateFieldDialog extends Component {
       <RaisedButton
         label="Cancel"
         style={styles.button}
+        backgroundColor={styles.deleteButton.backgroundColor}
         primary={true}
         onClick={this.handleCancelClose}
       />,
       <RaisedButton
         label="Update"
         style={styles.button}
+        backgroundColor={styles.addButton.backgroundColor}
         primary={true}
         onClick={this.handleClose}
       />
@@ -108,7 +110,10 @@ export default class UpdateFieldDialog extends Component {
 
 		return (
 			<div>
-				<RaisedButton label={this.props.buttonLabel || 'Update'} onClick={this.handleOpen} />
+				<RaisedButton 
+          label={this.props.buttonLabel || 'Update'} 
+          backgroundColor={styles.editButton.backgroundColor}
+          onClick={this.handleOpen} />
         <Dialog
           title={`Updating ${fieldSelections[this.props.selection]}...`}
           actions={actions}

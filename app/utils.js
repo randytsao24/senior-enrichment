@@ -58,6 +58,9 @@ export const styles = {
   },
   addButton: {
   	backgroundColor: '#33FF99'
+  },
+  editButton: {
+  	backgroundColor: '#99CCFF'
   }
 };
 

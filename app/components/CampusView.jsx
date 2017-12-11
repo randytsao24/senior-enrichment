@@ -65,6 +65,7 @@ function CampusView(props) {
 		    			buttonLabel='Edit Campus Image'/>
 		    		<RaisedButton 
 		    			label="Delete Campus"
+		    			backgroundColor={styles.deleteButton.backgroundColor}
 		    			disabled={
 		    				campusStudents.length > 0 ? true : false
 		    			}
@@ -109,6 +110,12 @@ function CampusView(props) {
 				        			store.dispatch(deleteStudent(student.id));
 				        		}}>
 			        		</RaisedButton>
+			        		<UpdateFieldDialog 
+			        			buttonLabel='Transfer'
+					    			studentId={student && student.id}
+					    			campusId={student && student.campusId}
+					    			campuses={props.campuses}
+					    			selection={updateIds.CAMPUS}/>
 		    				</TableRowColumn>
 		    			</TableRow>
 		    		);
