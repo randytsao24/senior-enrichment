@@ -16,7 +16,7 @@ import {
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { deleteStudent } from '../reducers/students';
-import { styles } from '../utils';
+import { sortByName, styles } from '../utils';
 
 // Helper function for our Students component
 function getCampusById(campusList, id) {
@@ -49,7 +49,7 @@ export default class Students extends Component {
 
 	render() {
 		const campuses = this.state.campuses;
-		const students = this.state.students;
+		let students = this.state.students;
 
 		return ( 
 			<div>
@@ -84,17 +84,17 @@ export default class Students extends Component {
 			    			<TableRow key={student.id}>
 					        <TableRowColumn>{index + 1}</TableRowColumn>
 					        <TableRowColumn>
-					        	<NavLink to={`/students/${student.id}`}>
+					        	<NavLink style={styles.link} to={`/students/${student.id}`}>
 					        		{student.name}
 					        	</NavLink>
 					        </TableRowColumn>
 					        <TableRowColumn>
-					        	<NavLink to={`/campuses/${studentCampus.id}`}>
+					        	<NavLink style={styles.link} to={`/campuses/${studentCampus.id}`}>
 					        		{studentCampus.name}
 					        	</NavLink>
 					        </TableRowColumn>
 					        <TableRowColumn>
-					        	<NavLink to={`/students/${student.id}`}>
+					        	<NavLink style={styles.link} to={`/students/${student.id}`}>
 					        		{student.id}
 					        	</NavLink>
 					        </TableRowColumn>

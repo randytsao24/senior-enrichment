@@ -5,6 +5,23 @@ import { black500, blue500 } from 'material-ui/styles/colors';
 import TextField from 'material-ui/TextField';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
+// Helper functions
+
+export function sortByName(a, b) {
+	console(a);
+	let nameOne = a.toUpperCase();
+	let nameTwo = b.toUpperCase();
+
+	if (nameOne < nameTwo) {
+    return -1;
+  }
+  else if (nameOne > nameTwo) {
+    return 1;
+  }
+
+  return 0;
+}
+
 export function getCampusById(campusList, id) {
 	return campusList.find((campus) => {
 		return campus.id === id;
@@ -23,7 +40,7 @@ export const updateIds = {
 	CAMPUS_IMAGE: 8
 };
 
-// Dummy componentsfor rendering specified field updating in the UpdateFieldDialog component
+// Inline CSS for React components
 
 export const styles = {
 	root: {
@@ -61,8 +78,13 @@ export const styles = {
   },
   editButton: {
   	backgroundColor: '#99CCFF'
+  },
+  link: {
+  	textDecoration: 'none'
   }
 };
+
+// Dummy components for rendering specified field updating in the UpdateFieldDialog component
 
 export function DialogUpdateFirstName(props) {
 	return (

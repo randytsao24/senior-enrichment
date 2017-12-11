@@ -75,7 +75,10 @@ function CampusView(props) {
 		    <Table selectable={false}>
 				<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
 					<TableRow>
-              <TableHeaderColumn colSpan="4" tooltip="Student List" style={{textAlign: 'center'}}>
+              <TableHeaderColumn 
+              	colSpan="4" 
+              	tooltip="Student List" 
+              	style={{textAlign: 'center'}}>
                 Student List for {selectedCampus && selectedCampus.name}
               </TableHeaderColumn>
             </TableRow>
@@ -93,12 +96,12 @@ function CampusView(props) {
 		    			<TableRow key={student.id}>
 		    				<TableRowColumn>{index + 1}</TableRowColumn>
 		    				<TableRowColumn>
-		    					<NavLink to={`/students/${student.id}`}>
+		    					<NavLink style={styles.link} to={`/students/${student.id}`}>
 		    						{student.name}
 		    					</NavLink>
 		    				</TableRowColumn>
 		    				<TableRowColumn>
-		    					<NavLink to={`/students/${student.id}`}>
+		    					<NavLink style={styles.link} to={`/students/${student.id}`}>
 		    						{student.id}
 		    					</NavLink>
 		    				</TableRowColumn>
@@ -115,7 +118,7 @@ function CampusView(props) {
 					    			studentId={student && student.id}
 					    			campusId={student && student.campusId}
 					    			campuses={props.campuses}
-					    			selection={updateIds.CAMPUS}/>
+					    			selection={updateIds.CAMPUS} />
 		    				</TableRowColumn>
 		    			</TableRow>
 		    		);

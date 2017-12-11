@@ -72,7 +72,7 @@ function StudentView(props) {
 			    	<TableRowColumn>{student && student.email}</TableRowColumn>
 			    	<TableRowColumn>{student && student.gpa}</TableRowColumn>
 			    	<TableRowColumn>
-			    		<NavLink to={`/campuses/${studentCampus && studentCampus.id}`}>
+			    		<NavLink style={styles.link} to={`/campuses/${studentCampus && studentCampus.id}`}>
 			    			{studentCampus && studentCampus.name}
 			    		</NavLink>
 			    	</TableRowColumn>

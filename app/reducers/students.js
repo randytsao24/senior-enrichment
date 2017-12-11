@@ -50,7 +50,7 @@ export function createStudent(student, history) {
 			.then(createdStudent => {
 				const action = createStudentAction(createdStudent);
 				dispatch(action);
-				history.push(`/students/`);
+				history.push(`/students/${createdStudent.id}`);
 			})
 			.catch(console.error);
 	}
