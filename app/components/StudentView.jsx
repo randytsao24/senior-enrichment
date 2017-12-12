@@ -1,4 +1,5 @@
 // components/StudentView.jsx
+// This component displays information for a single student.
 
 import React, { Component } from 'react';
 import store from '../store';

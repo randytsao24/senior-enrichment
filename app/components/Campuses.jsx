@@ -16,28 +16,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import store from '../store';
 import { styles } from '../utils';
 
-// const styles = {
-//   root: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//     justifyContent: 'space-around',
-//   },
-//   gridList: {
-//     width: 1200,
-//     height: 600,
-//     overflowY: 'auto',
-//   },
-//   header: {
-//     display: 'flex',
-//     flexDirection: 'row',
-//     textAlign: 'center',
-//     justifyContent: 'space-between'
-//   },
-//   button: {
-//     margin: 16
-//   }
-// }
-
 function Campus (props) {
   return (
     <div>

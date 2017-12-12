@@ -1,4 +1,5 @@
 // components/CampusView.jsx
+// This component displays information for a single campus.
 
 import React, { Component } from 'react';
 import store from '../store';
@@ -72,12 +73,13 @@ function CampusView(props) {
 		    			onClick={props.handleDeleteButtonClick}/>
 		      </div>
 		    </CardActions>
+		    <br/> <br/>
+		    <Divider></Divider>
 		    <Table selectable={false}>
 				<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
 					<TableRow>
               <TableHeaderColumn 
-              	colSpan="4" 
-              	tooltip="Student List" 
+              	colSpan="4"
               	style={{textAlign: 'center'}}>
                 Student List for {selectedCampus && selectedCampus.name}
               </TableHeaderColumn>

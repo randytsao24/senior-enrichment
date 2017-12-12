@@ -1,4 +1,10 @@
-// components/Students.jsx
+/*
+ * components/Students.jsx
+ *
+ *  Contains definition for Students component which displays
+ *  a list of all campuses.
+ *
+ */
 
 import React, { Component } from 'react';
 import store from '../store';

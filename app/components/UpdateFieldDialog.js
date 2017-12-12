@@ -1,4 +1,11 @@
 // components/UpdateFieldDialog.jsx
+// This is a semi-modular component which displays a pop-up dialog
+// when the associated button is clicked. It utilizes sub-components
+// defined in app/utils.js to determine which field to update.
+
+// NOTE: This is a very messy component, I wanted to see if I could
+// update a single field at a time rather than showing a form of
+// all the fields
 
 import React, { Component } from 'react';
 import store from '../store';
